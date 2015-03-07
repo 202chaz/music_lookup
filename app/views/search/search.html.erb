@@ -1,0 +1,34 @@
+<%= form_for search_path, method: :get do |f| %>
+  <p>
+	<div class="row">
+	  <div class="col-lg-3">
+	      <div class="input-group">
+    <%= text_field_tag :q, params[:q], class:'form-control', placeholder:"Enter Artist Name" %>
+	<span class="input-group-btn">
+    <%= submit_tag "Go", name: nil, class:"btn btn-default" %>
+    </span>
+	      </div>
+	  </div>
+	 </div>
+  </p>
+<% end %>
+
+
+<% if @songs == [] %>
+	<h3>Please enter an artist name to begin.</h3>
+<% else %>
+<%= render "search/details" %>
+<% end %>
+
+<script>
+$(document).ready(function() {
+    $('input[type="submit"]').attr('disabled', true);
+    $('input[type="text"]').on('keyup',function() {
+        if($(this).val() != '') {
+            $('input[type="submit"]').attr('disabled' , false);
+        }else{
+            $('input[type="submit"]').attr('disabled' , true);
+        }
+    });
+});
+</script>

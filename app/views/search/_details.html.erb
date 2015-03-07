@@ -1,0 +1,49 @@
+<% unless @artist_name.nil? %>
+
+<% @artist_name.results.each do |a| %>
+ <h3><%= a.artist_name %>'s Discography</h3>
+ 
+<% end %>
+
+<% end %>
+
+
+<% unless @songs == [] %>
+
+<table class="table table-striped table-condensed table-hover">
+<tr>
+<th>Cover</th>
+<th>Name</th>
+<th>Album</th>
+<th>Genre</th>
+<th>Released</th>
+<th></th>
+</tr>
+<%  @songs.results.each do |song| %>
+
+<tr>
+ <td><%= image_tag(song.artwork_url60) %></td>
+ <td><%= song.track_name %></td>
+ <td><%= song.collection_name %></td>
+ <td><%= song.primary_genre_name %></td>
+ <td><%= song.release_date.to_date.strftime('%b %d, %Y') %></td>
+ <td>
+ <audio controls>
+   <source src="<%= song.preview_url %>" type="audio/mpeg">
+ Your browser does not support the audio element.
+ </audio>
+</td> 
+</tr>
+
+<% end %>
+
+<% end %>
+
+</table>
+
+
+
+
+
+
+
